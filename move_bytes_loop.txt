@@ -1,0 +1,15 @@
+org 100h
+
+   mov si,2000h
+   mov di,4000h
+   
+   mov cx,5h
+   mov bx,0h
+   
+repeat:
+    mov al,[si+bx]
+    mov [di+bx],al
+    inc bx
+    loop repeat
+
+ret

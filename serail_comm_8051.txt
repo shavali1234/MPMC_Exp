@@ -1,0 +1,34 @@
+org 00h
+ajmp main
+	main:
+	mov tmod,#20h
+	mov scon,#50h
+	mov th1,#0fdh
+	setb tr1
+		
+	loop:
+	mov a,#'y'
+	acall transmit
+	mov a,#09h
+	acall transmit
+	acall delay
+	sjmp loop
+	
+	transmit:
+	mov sbuf,a
+	wait:
+	jnb ti , wait
+	clr ti
+	ret
+	
+	delay:
+	mov r0,#0ffh
+	d2:
+	mov r1,#0ffh
+	d1:
+	djnz r1,d1
+	djnz r0,d2
+	ret
+	
+end
+	

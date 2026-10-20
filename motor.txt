@@ -1,0 +1,32 @@
+org 00h
+	ajmp main
+	
+	main:
+	setb p1.0
+	clr p1.1
+	again:
+	setb p1.2
+	acall high_delay
+	clr p1.2
+	acall low_delay
+	sjmp again
+	
+	
+	high_delay:
+	mov r0,#100
+	dh2:
+	mov r1,#250
+	dh1:
+	djnz r1,dh1
+	djnz r0,dh2
+	ret
+	
+	low_delay:
+	mov r0,#100
+	dl2:
+	mov r1,#250
+	dl1:
+	djnz r1,dl1
+	djnz r0,dl2
+	ret
+end

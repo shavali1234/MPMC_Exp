@@ -1,0 +1,14 @@
+org 100h
+    mov si,2000h
+    mov di,4000h
+    
+    mov cx,[si]
+    mov ax,1
+    
+factorial:
+    mul cx
+    loop factorial
+    
+    mov [di],ax
+
+int 3

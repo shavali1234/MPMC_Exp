@@ -1,0 +1,79 @@
+org 00h
+	ajmp main
+	
+	main:
+	
+	acall commands
+	
+	mov p1,#38h // 5x7 size , 8-bit
+	acall send
+	
+	mov p1,#01h //clear screen
+	acall send
+	
+	mov p1,#80h // from first line
+	acall send
+	
+	mov p1,#0eh //display cursor
+	acall send
+	
+	acall datas
+	
+	mov dptr,#string
+	
+	loop:
+		movc a,@a+dptr
+		jz end_program
+		
+		mov p1,a
+		acall send
+		inc dptr
+		clr a
+		sjmp loop
+		
+		end_program:
+			sjmp $
+	
+	
+	
+commands:
+	clr p3.0
+	acall delay
+	clr p3.1
+	acall delay
+	ret
+	
+datas:
+	setb p3.0
+	acall delay
+	clr p3.1
+	acall delay
+	ret
+
+delay:
+	mov r0,#250
+	l2:
+	mov r1,#100
+	l1:
+	djnz r1,l1
+	djnz r0,l2
+	ret
+	
+send:
+	setb p3.2
+	acall delay
+	clr p3.2
+	ret
+	
+string: db "Hello"
+	
+	
+end
+
+//01h: clear screen
+//0ch: display on ,cursor off
+//0eh: display on , cursor on
+//38h: 5x7 size of character 8 bit mode
+//80h: cursor at beginning of row 1
+//c0h: cursor at begining of row 2
+	

@@ -1,0 +1,28 @@
+org 00h
+	ajmp main
+	main:
+	mov a,#01h
+	mov p3,a
+	acall delay
+	rl a
+	mov p3,a
+	acall delay
+	rl a
+	mov p3,a
+	acall delay
+	rl a
+	mov p3,a
+	acall delay
+	sjmp main
+	
+	
+	delay:
+	mov r0,#200
+	d2:
+	mov r1,#250
+	d1:
+	djnz r1,d1
+	djnz r0,d2
+	ret
+	
+	end

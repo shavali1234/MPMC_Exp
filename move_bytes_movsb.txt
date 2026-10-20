@@ -1,0 +1,7 @@
+org 100h    
+    mov si,2000h
+    mov di,4000h
+    mov cx,5
+    rep movsb 
+
+int 3

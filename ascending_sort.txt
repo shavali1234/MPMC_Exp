@@ -1,0 +1,31 @@
+org 100h
+      mov si,2000h
+      mov cl,0ah
+outer:       
+      mov al,[si]
+      mov dl,0ah
+      mov di,2000h
+      
+inner:      
+      mov bl,[di]
+      cmp al,bl
+      jc swap
+      jmp swap_exit
+      
+swap:
+      xchg al,bl
+      mov [si],al
+      mov [di],bl
+             
+swap_exit:
+      inc di
+      dec dl
+      
+      jnz inner
+      
+      inc si   
+      dec cl
+      
+      jnz outer
+
+int 3

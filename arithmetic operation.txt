@@ -1,0 +1,42 @@
+
+org 100h
+; add your code here      
+    mov si,2000h
+    mov di,4000h
+    
+    mov ax,[si]
+    mov bx,[si+2]  
+    
+    add ax,bx
+    mov [di],ax 
+       
+    mov ax,[si]
+    
+    adc ax,bx
+    mov [di+2],ax    
+    
+    mov ax,[si]
+    
+    sub ax,bx
+    mov [di+4],ax
+    
+    mov ax,[si]
+    
+    sbb ax,bx
+    mov [di+6],ax
+    
+    mov ax,[si]
+    
+    mul bx
+    mov [di+8],ax   
+    
+    
+    mov ax,[si]
+    
+    div bx    
+    mov [di+10],ax
+ret
+
+
+
+

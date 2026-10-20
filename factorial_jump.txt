@@ -1,0 +1,17 @@
+org 100h
+
+; add your code here
+    mov si,2000h
+    mov di,4000h
+    
+    mov ax,1h
+    mov cx,[si]
+
+factorial:
+    mul cx
+    dec cx
+    jnz factorial
+    
+    mov [di],ax        
+
+ret

@@ -1,0 +1,14 @@
+org 100h
+    mov si,2000h
+    mov di,4000h
+    mov al,0h
+    mov bx,0h
+repeat:
+    mov al,[si+bx]
+    cmp al,0h
+    jz exit
+    inc bx
+    jmp repeat
+exit:
+    mov [di],bx 
+    int 3

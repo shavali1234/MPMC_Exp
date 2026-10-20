@@ -1,0 +1,15 @@
+org 0000h
+ljmp main
+main:
+	mov tmod,#10h
+	mov th1,#0dbh
+	mov tl1,#0ffh
+	setb tr1
+	cpl p0.0
+here:
+	jnb tf1,here
+	
+	clr tf1
+	clr tr1
+	sjmp main
+	END
